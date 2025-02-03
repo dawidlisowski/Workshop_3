@@ -18,7 +18,7 @@ public class DbUtil {
         if (dataSource == null) {
             try {
                 Context initContext = new InitialContext();
-                Context evnContext = (Context) initContext.lookup("java:/comp/evn");
+                Context evnContext = (Context) initContext.lookup("java:/comp/env");
                 dataSource = (DataSource) evnContext.lookup("jdbc/users");
             } catch (NamingException e) {
                 e.printStackTrace();
