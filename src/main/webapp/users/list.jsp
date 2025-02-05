@@ -32,7 +32,9 @@
                         <td>${user.id}</td>
                         <td>${user.userName}</td>
                         <td>${user.email}</td>
-                        <td>akcja</td>
+                        <td>
+                            <a href="<c:url value="/user/edit?id=${user.id}"/>">Edytuj</a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

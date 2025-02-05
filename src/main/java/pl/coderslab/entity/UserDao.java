@@ -11,9 +11,9 @@ import java.util.Arrays;
 
 public class UserDao {
     private static final String CREATE_USER_QUERY = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-    private static final String READ_ALL_QUERY = "SELECT id, email, username FROM users";
+    private static final String READ_ALL_QUERY = "SELECT id, username, email FROM users";
     private static final String READ_USER_BY_ID_QUERY = "SELECT * FROM users WHERE id = ?";
-    private static final String UPDATE_USER_QUERY = "UPDATE users SET email = ?, username = ?, password = ? WHERE id = ?";
+    private static final String UPDATE_USER_QUERY = "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
     private static final String DELETE_USER_QUERY = "DELETE FROM users WHERE id = ?";
 
     private static String hashPassword(String password) {
@@ -49,8 +49,8 @@ public class UserDao {
             while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getInt(1));
-                user.setEmail(resultSet.getString(2));
-                user.setUserName(resultSet.getString(3));
+                user.setUserName(resultSet.getString(2));
+                user.setEmail(resultSet.getString(3));
                 users = addToArray(users, user);
             }
             return users;
@@ -83,8 +83,8 @@ public class UserDao {
     public static void update(User user) {
         try (Connection connection = DbUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_QUERY);
-            preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getUserName());
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, hashPassword(user.getPassword()));
             preparedStatement.setInt(4, user.getId());
             preparedStatement.executeUpdate();
