@@ -14,32 +14,24 @@
     <div class="card shadow mb-4">
         <div
                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Lista użytkowników</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Szczegóły użytkownika</h6>
         </div>
         <div class="card-body">
-            <table class="table table-striped">
-                <thead>
+            <table class="table">
                 <tr>
-                    <th>id</th>
-                    <th>Nazwa Użytkownika</th>
-                    <th>Email</th>
-                    <th>Akcja</th>
+                    <th>Id</th>
+                    <td><c:out value="${user.id}"/></td>
                 </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${users}" var="user">
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.userName}</td>
-                        <td>${user.email}</td>
-                        <td>
-                            <a href="<c:url value="/user/edit?id=${user.id}"/>">Edytuj</a>
-                            <a href="<c:url value="/user/show?id=${user.id}"/>">Pokaż</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
+                <tr>
+                    <th>Nazwa użytkownika</th>
+                    <td><c:out value="${user.userName}"/></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><c:out value="${user.email}"/></td>
+                </tr>
             </table>
+            <a href="<c:url value="/user/list"/>" class="btn btn-primary">Wróć</a>
         </div>
     </div>
 
